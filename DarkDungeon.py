@@ -10,5 +10,5 @@ def main():
 ▀▀▀▀▀•  ▀  ▀ .▀  ▀·▀  ▀    ▀▀▀▀▀•  ▀▀▀ ▀▀ █▪·▀▀▀▀  ▀▀▀  ▀█▄▀▪▀▀ █▪
 
           ''')
-    name=input("what is your characters name? ")
+    name=input("What is your characters name? ")
 main()

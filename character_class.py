@@ -13,7 +13,7 @@ class Character:
         self.mana= mana
         self.dodge=dodge
         
-        self.gold=0
+        self.gold=50
         self.max_health = health
         self.max_mana=mana
         self.weapon =Item("No Weapon", "Weapon")
@@ -23,7 +23,7 @@ class Character:
     
     def attack(self,opponent):
         die=random.randint(1,100)
-        print(f"dodge roll = {die}, required roll <= {opponent.dodge}")
+        # print(f"dodge roll = {die}, required roll <= {opponent.dodge}")
         if (die > opponent.dodge):
             opponent.health -= self.strength+self.weapon.strength+self.helmet.strength+self.armor.strength+self.shoes.strength
             print(f"{self.name} has attacked {opponent.name} with {self.weapon.name} for {self.strength+self.weapon.strength+self.helmet.strength+self.armor.strength+self.shoes.strength} points of damage")
@@ -46,9 +46,9 @@ class Character:
         #similar to attacking but cant dodge and cost mana
         mana_cost=20
         if(self.mana-mana_cost>=0):
-            opponent.health -=int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.3)
+            opponent.health -=int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.1)
             self.mana-=mana_cost
-            print(f"{self.name} has attacked {opponent.name} with 'spell: Throw Stone' for {int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.3)} points of damage")
+            print(f"{self.name} has attacked {opponent.name} with 'spell: Throw Stone' for {int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.1)} points of damage")
             print(f"{opponent.name} health = {opponent.health}")
             print(f"mana cost: {mana_cost}, current mana {self.mana}")
         else:
@@ -80,7 +80,7 @@ class Character:
         
     def full_health(self):
         self.health = self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health
-        print(f"mana is now: {self.health}/{self.health}")
+        print(f"health is now: {self.health}/{self.health}")
 
 
 #child class            
@@ -91,7 +91,7 @@ class Fighter(Character):
         
     def attack(self,opponent):
         die=random.randint(1,100)
-        print(f"dodge roll = {die}, required roll <= {opponent.dodge}")
+        # print(f"dodge roll = {die}, required roll <= {opponent.dodge}")
         if (die > opponent.dodge):
             if(random.random()<.2):
                 print("Double Strike!")
@@ -109,9 +109,9 @@ class Fighter(Character):
         #similar to attacking but cant dodge and cost mana
         mana_cost=20
         if(self.mana-mana_cost>=0):
-            opponent.health -=int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.3)
+            opponent.health -=int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.1)
             self.mana-=mana_cost
-            print(f"{self.name} has attacked {opponent.name} with 'spell: Iron Resolve' for {int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.3)} points of damage")
+            print(f"{self.name} has attacked {opponent.name} with 'spell: Iron Resolve' for {int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.1)} points of damage")
             print(f"{opponent.name} health = {opponent.health}")
             print(f"mana cost: {mana_cost}, current mana {self.mana}")
         else:
@@ -127,9 +127,9 @@ class Mage(Character):
         #similar to attacking but cant dodge and cost mana mage does more magic damage
         mana_cost=30
         if(self.mana-mana_cost>=0):
-            opponent.health -=int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.45)
+            opponent.health -=int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.15)
             self.mana-=mana_cost
-            print(f"{self.name} has attacked {opponent.name} with 'spell: Arcane Bolt' for {int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.45)} points of damage")
+            print(f"{self.name} has attacked {opponent.name} with 'spell: Arcane Bolt' for {int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.15)} points of damage")
             print(f"{opponent.name} health = {opponent.health}")
             print(f"mana cost: {mana_cost}, current mana {self.mana}")
         else:
@@ -145,34 +145,35 @@ class Barbarian(Character):
         #similar to attacking but cant dodge and cost mana
         mana_cost=20
         if(self.mana-mana_cost>=0):
-            opponent.health -=int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.3)
+            opponent.health -=int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.1)
             self.mana-=mana_cost
-            print(f"{self.name} has attacked {opponent.name} with 'spell: Crushing Blow' for {int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.3)} points of damage")
+            print(f"{self.name} has attacked {opponent.name} with 'spell: Crushing Blow' for {int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.1)} points of damage")
             print(f"{opponent.name} health = {opponent.health}")
             print(f"mana cost: {mana_cost}, current mana {self.mana}")
         else:
             print("you dont have enough mana")
             
     def regenerate(self): #barbarian regenerate health
-        self.health+= int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.02)
-        print(f"{self.name} regenerates {int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.01)} current health: {self.health}")
+        self.health+= int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.03)
+        print(f"regen {int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.03)}")
+        print(f"{self.name} regenerates {int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.03)} current health: {self.health}")
 
 class Enemy(Character):
     '''Enemy class'''
     def __init__(self, name, race, health, strength, mana, dodge):
         super().__init__(name, race, health, strength, mana, dodge)
         
-    def regenerate(self): #barbarian regenerate health
-        self.health+= int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.01)
-        print(f"{self.name} regenerates {int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.01)} current health: {self.health}")
+    def regenerate(self): 
+        self.health+= int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.06)
+        print(f"{self.name} regenerates {int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.06)} current health: {self.health}")
         
     def spell(self, opponent):
         #similar to attacking but cant dodge and cost mana mage does more magic damage
         mana_cost=30
         if(self.mana-mana_cost>=0):
-            opponent.health -=int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.45)
+            opponent.health -=int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.15)
             self.mana-=mana_cost
-            print(f"{self.name} has attacked {opponent.name} with 'spell: Eldritch Nova' for {int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.45)} points of damage")
+            print(f"{self.name} has attacked {opponent.name} with 'spell: Eldritch Nova' for {int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.15)} points of damage")
             print(f"{opponent.name} health = {opponent.health}")
             print(f"mana cost: {mana_cost}, current mana {self.mana}")
         else:

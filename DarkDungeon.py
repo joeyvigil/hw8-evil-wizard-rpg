@@ -1,5 +1,6 @@
 import os
 import random
+import sys
 from item_class import Item
 from character_class import Character,Fighter,Mage,Barbarian,Enemy
 
@@ -54,32 +55,12 @@ items = [
     Item("Crown of the Forgotten King", "Helmet", health=40, mana=100, dodge=25)
 ]
 
-# Test — print all items
-# for item in items:
-#     print(item)
-# player = Fighter('joey','Human',120,12,120,18)
-# goblin = Character('bingo', 'goblin','gooby', 150,10,30,10)
-# player.equip(Item("Iron Longsword", "Weapon", strength=10))
-# player.equip(Item("Boots of Speed", "Shoes", dodge=20))
-# goblin.equip(Item("Chainmail Vest", "Armor", health=25))
-# print(player.return_stats())
-# print(goblin.return_stats())
-# print()
-# while(player.health>0 and goblin.health>0):
-#     player.spell(goblin)
-#     goblin.attack(player)
-
-
 shop_items=[]
 for i in range(5):
     shop_items.append(random.randint(4,31))
 
-
-
 def main():
     os.system('cls||clear')
-    print(f"num of items: {len(items)}")
-    print(f"shop items: {shop_items}")
     print('''
 ·▄▄▄▄   ▄▄▄· ▄▄▄  ▄ •▄     ·▄▄▄▄  ▄• ▄▌ ▐ ▄  ▄▄ • ▄▄▄ .       ▐ ▄ 
 ██▪ ██ ▐█ ▀█ ▀▄ █·█▌▄▌▪    ██▪ ██ █▪██▌•█▌▐█▐█ ▀ ▪▀▄.▀·▪     •█▌▐█
@@ -142,14 +123,14 @@ Choose a class:
         if race=='4':
             hero=Barbarian(name,'Gnome',80,6,140,30)
     os.system('cls||clear')      
-    print(hero.return_stats())
     print('''
-▄▄▄ . ▐ ▄ ▄▄▄▄▄▄▄▄ .▄▄▄  ▪   ▐ ▄  ▄▄ •     ·▄▄▄▄  ▄• ▄▌ ▐ ▄  ▄▄ • ▄▄▄ .       ▐ ▄ 
-▀▄.▀·•█▌▐█•██  ▀▄.▀·▀▄ █·██ •█▌▐█▐█ ▀ ▪    ██▪ ██ █▪██▌•█▌▐█▐█ ▀ ▪▀▄.▀·▪     •█▌▐█
-▐▀▀▪▄▐█▐▐▌ ▐█.▪▐▀▀▪▄▐▀▀▄ ▐█·▐█▐▐▌▄█ ▀█▄    ▐█· ▐█▌█▌▐█▌▐█▐▐▌▄█ ▀█▄▐▀▀▪▄ ▄█▀▄ ▐█▐▐▌
-▐█▄▄▌██▐█▌ ▐█▌·▐█▄▄▌▐█•█▌▐█▌██▐█▌▐█▄▪▐█    ██. ██ ▐█▄█▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌.▐▌██▐█▌
- ▀▀▀ ▀▀ █▪ ▀▀▀  ▀▀▀ .▀  ▀▀▀▀▀▀ █▪·▀▀▀▀     ▀▀▀▀▀•  ▀▀▀ ▀▀ █▪·▀▀▀▀  ▀▀▀  ▀█▄▀▪▀▀ █▪
+ ▄ .▄▄▄▄ .▄▄▄            ▪   ▐ ▄ ·▄▄▄      ▄▄▄  • ▌ ▄ ·.  ▄▄▄· ▄▄▄▄▄▪         ▐ ▄ 
+██▪▐█▀▄.▀·▀▄ █·▪         ██ •█▌▐█▐▄▄·▪     ▀▄ █··██ ▐███▪▐█ ▀█ •██  ██ ▪     •█▌▐█
+██▀▐█▐▀▀▪▄▐▀▀▄  ▄█▀▄     ▐█·▐█▐▐▌██▪  ▄█▀▄ ▐▀▀▄ ▐█ ▌▐▌▐█·▄█▀▀█  ▐█.▪▐█· ▄█▀▄ ▐█▐▐▌
+██▌▐▀▐█▄▄▌▐█•█▌▐█▌.▐▌    ▐█▌██▐█▌██▌.▐█▌.▐▌▐█•█▌██ ██▌▐█▌▐█ ▪▐▌ ▐█▌·▐█▌▐█▌.▐▌██▐█▌
+▀▀▀ · ▀▀▀ .▀  ▀ ▀█▄▀▪    ▀▀▀▀▀ █▪▀▀▀  ▀█▄▀▪.▀  ▀▀▀  █▪▀▀▀ ▀  ▀  ▀▀▀ ▀▀▀ ▀█▄▀▪▀▀ █▪
     ''')
+    print(hero.return_stats())
     a = input("Press ENTER to start")
     
     #--------------- MAIN GAME LOOP --------------------------
@@ -165,11 +146,12 @@ Choose a class:
 
 1) Enter New Room (d10) (10% empty room, 20% treasure room, 70% monster room)
 2) Enter Shop
-3) Summon Dark Wizard!
+3) View Stats
+4) Summon Dark Wizard! (Cost: 200 gold)
         ''')
         command=''
-        while(command!='1' and command!='2' and command!='3'):
-            command=input("(option 1,2,3): ")
+        while(command!='1' and command!='2' and command!='3'and command!='4'):
+            command=input("(option 1,2,3,4): ")
         
         #----------------- enter new room-------------------------
         if command=='1':
@@ -177,6 +159,7 @@ Choose a class:
             die=random.randint(1,10)
             print(f"die roll = {die}")
             if die==1:
+                os.system('cls||clear')
                 print('''
 ▄▄▄ .• ▌ ▄ ·.  ▄▄▄·▄▄▄▄▄ ▄· ▄▌    ▄▄▄              • ▌ ▄ ·. 
 ▀▄.▀··██ ▐███▪▐█ ▄█•██  ▐█▪██▌    ▀▄ █·▪     ▪     ·██ ▐███▪
@@ -187,6 +170,7 @@ Choose a class:
                 a = input("Press ENTER to continue")
             
             elif die<=3:
+                os.system('cls||clear')
                 print('''
 ▄▄▄▄▄▄▄▄  ▄▄▄ . ▄▄▄· .▄▄ · ▄• ▄▌▄▄▄  ▄▄▄ .
 •██  ▀▄ █·▀▄.▀·▐█ ▀█ ▐█ ▀. █▪██▌▀▄ █·▀▄.▀·
@@ -205,9 +189,9 @@ Choose a class:
                     equip=input("(option y/n): ")
                 if equip=='y':
                     hero.equip(found_item)
-                    print(f"you equipped {found_item.name}")
                     a = input(f"you equipped {found_item.name}")
             else:
+                os.system('cls||clear')
                 print('''
 ▄▄▄ . ▐ ▄ ▄▄▄ .• ▌ ▄ ·.  ▄· ▄▌
 ▀▄.▀·•█▌▐█▀▄.▀··██ ▐███▪▐█▪██▌
@@ -216,7 +200,7 @@ Choose a class:
 ▀▀▀ ▀▀ █▪ ▀▀▀ ▀▀  █▪▀▀▀  ▀ • 
                 ''')
                 a = input("Press ENTER to continue")
-                monster = Character('Monster', 'ghost', 'ghoul', random.randint(80,120),random.randint(6,14),random.randint(80,160),random.randint(0,30),)
+                monster = Character('Monster', 'ghost', 'ghoul', random.randint(80,120),random.randint(6,14),random.randint(80,160),random.randint(0,30))
                 
                 #------------- attack loop -------------------
                 while(monster.health>0 and hero.health>0):
@@ -230,18 +214,223 @@ Choose :
                     while(at!='1' and at!='2'and at!='3'):
                         at=input("(option 1,2,3): ")
                     if at=='1':
-                        pass
+                        hero.attack(monster)
+                        hero.regenerate()
+                        if monster.health>0:
+                            if random.randint(0,1):
+                                monster.spell(hero)
+                                monster.regenerate()
+                            else:
+                                monster.attack(hero)
+                                monster.regenerate()
                     elif at=='2':
-                        pass
+                        hero.spell(monster)
+                        hero.regenerate()
+                        if monster.health>0:
+                            if random.randint(0,1):
+                                monster.spell(hero)
+                                monster.regenerate()
+                            else:
+                                monster.attack(hero)
+                                monster.regenerate()
                     elif at=='3':
-                        pass
+                        os.system('cls||clear')
+                        print(f'''
+.▄▄ · ▄▄▄▄▄ ▄▄▄· ▄▄▄▄▄.▄▄ · 
+▐█ ▀. •██  ▐█ ▀█ •██  ▐█ ▀. 
+▄▀▀▀█▄ ▐█.▪▄█▀▀█  ▐█.▪▄▀▀▀█▄
+▐█▄▪▐█ ▐█▌·▐█ ▪▐▌ ▐█▌·▐█▄▪▐█
+ ▀▀▀▀  ▀▀▀  ▀  ▀  ▀▀▀  ▀▀▀▀ 
+Monster health: {monster.health}/{monster.max_health} Strength:{monster.strength} Mana: {monster.mana} Dodge: {monster.dodge}
+Player health: {hero.health}/{hero.max_health} Strength: {hero.strength+hero.weapon.strength+hero.helmet.strength+hero.armor.strength+hero.shoes.strength} Mana: {hero.mana+hero.weapon.mana+hero.helmet.mana+hero.armor.mana+hero.shoes.mana} Dodge: {hero.dodge+hero.weapon.dodge+hero.helmet.dodge+hero.armor.dodge+hero.shoes.dodge}
+                        ''')
+                        a = input("Press ENTER")
+                    if hero.health<=0:
+                        print(f'''
+ ▄▄ •  ▄▄▄· • ▌ ▄ ·. ▄▄▄ .           ▌ ▐·▄▄▄ .▄▄▄  
+▐█ ▀ ▪▐█ ▀█ ·██ ▐███▪▀▄.▀·    ▪     ▪█·█▌▀▄.▀·▀▄ █·
+▄█ ▀█▄▄█▀▀█ ▐█ ▌▐▌▐█·▐▀▀▪▄     ▄█▀▄ ▐█▐█•▐▀▀▪▄▐▀▀▄ 
+▐█▄▪▐█▐█ ▪▐▌██ ██▌▐█▌▐█▄▄▌    ▐█▌.▐▌ ███ ▐█▄▄▌▐█•█▌
+·▀▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀      ▀█▄▀▪. ▀   ▀▀▀ .▀  ▀
+------------------ You have died -------------------
+                        ''')
+                        a = input("Press ENTER to exit")
+                        sys.exit()
+                    if monster.health<=0:
+                        print(f'''
+• ▌ ▄ ·.        ▐ ▄ .▄▄ · ▄▄▄▄▄▄▄▄ .▄▄▄      .▄▄ · ▄▄▌   ▄▄▄· ▪   ▐ ▄ 
+·██ ▐███▪▪     •█▌▐█▐█ ▀. •██  ▀▄.▀·▀▄ █·    ▐█ ▀. ██•  ▐█ ▀█ ██ •█▌▐█
+▐█ ▌▐▌▐█· ▄█▀▄ ▐█▐▐▌▄▀▀▀█▄ ▐█.▪▐▀▀▪▄▐▀▀▄     ▄▀▀▀█▄██▪  ▄█▀▀█ ▐█·▐█▐▐▌
+██ ██▌▐█▌▐█▌.▐▌██▐█▌▐█▄▪▐█ ▐█▌·▐█▄▄▌▐█•█▌    ▐█▄▪▐█▐█▌▐▌▐█ ▪▐▌▐█▌██▐█▌
+▀▀  █▪▀▀▀ ▀█▄▀▪▀▀ █▪ ▀▀▀▀  ▀▀▀  ▀▀▀ .▀  ▀     ▀▀▀▀ .▀▀▀  ▀  ▀ ▀▀▀▀▀ █▪
+
+                        ''')
+                        money = random.randint(10,20)
+                        hero.gold += money
+                        a = input(f"You have received {money} gold")
         #----------------- Shop -------------------------
         elif command=='2':
-            pass
-        #----------------- fight dark wizard -------------------------
+            os.system('cls||clear')
+            print(f'''
+.▄▄ ·  ▄ .▄       ▄▄▄·
+▐█ ▀. ██▪▐█▪     ▐█ ▄█
+▄▀▀▀█▄██▀▐█ ▄█▀▄  ██▀·
+▐█▄▪▐███▌▐▀▐█▌.▐▌▐█▪·•
+ ▀▀▀▀ ▀▀▀ · ▀█▄▀▪.▀   
+Current Gold: {hero.gold}
+1) Regenerate health --- Cost: 10
+2) Regenerate mana --- Cost: 10
+3) Buy {items[shop_items[0]]} --- Cost: 50
+4) Buy {items[shop_items[1]]} --- Cost: 50
+5) Buy {items[shop_items[2]]} --- Cost: 50
+6) Buy {items[shop_items[3]]} --- Cost: 50
+7) Buy {items[shop_items[4]]} --- Cost: 50
+8) Exit
+            ''')
+            shop=''
+            while(shop!='1' and shop!='2' and shop!='3' and shop!='4' and shop!='5' and shop!='6' and shop!='7'and shop!='8'):
+                shop=input("(option 1-8): ")
+            if shop=='1' and hero.gold>=10:
+                hero.full_health
+                hero.gold-=10
+            elif shop=='2' and hero.gold>=10:
+                hero.full_mana
+                hero.gold-=10
+            elif shop=='3' and hero.gold>=50:
+                hero.equip(items[shop_items[0]])
+                a = input(f"You equiped {items[shop_items[0]].name}")
+                hero.gold-=50
+            elif shop=='4' and hero.gold>=50:
+                hero.equip(items[shop_items[1]])
+                a = input(f"You equiped {items[shop_items[1]].name}")
+                hero.gold-=50
+            elif shop=='5' and hero.gold>=50:
+                hero.equip(items[shop_items[2]])
+                a = input(f"You equiped {items[shop_items[2]].name}")
+                hero.gold-=50
+            elif shop=='6' and hero.gold>=50:
+                hero.equip(items[shop_items[3]])
+                a = input(f"You equiped {items[shop_items[3]].name}")
+                hero.gold-=50
+            elif shop=='7' and hero.gold>=50:
+                hero.equip(items[shop_items[4]])
+                a = input(f"You equiped {items[shop_items[4]].name}")
+                hero.gold-=50
+                
+                
+            #----------------- view stats -------------------------
         elif command=='3':
-            pass
-            
+            os.system('cls||clear')
+            print(f'''
+.▄▄ · ▄▄▄▄▄ ▄▄▄· ▄▄▄▄▄.▄▄ · 
+▐█ ▀. •██  ▐█ ▀█ •██  ▐█ ▀. 
+▄▀▀▀█▄ ▐█.▪▄█▀▀█  ▐█.▪▄▀▀▀█▄
+▐█▄▪▐█ ▐█▌·▐█ ▪▐▌ ▐█▌·▐█▄▪▐█
+ ▀▀▀▀  ▀▀▀  ▀  ▀  ▀▀▀  ▀▀▀▀ 
+Player health: {hero.health}/{hero.max_health+hero.weapon.health+hero.helmet.health+hero.armor.health+hero.shoes.health}\nStrength: {hero.strength+hero.weapon.strength+hero.helmet.strength+hero.armor.strength+hero.shoes.strength} \nMagic Power (sum of mana stats): {hero.mana+hero.weapon.mana+hero.helmet.mana+hero.armor.mana+hero.shoes.mana} \nDodge: {hero.dodge+hero.weapon.dodge+hero.helmet.dodge+hero.armor.dodge+hero.shoes.dodge}% \n\n{hero.return_stats()}
+                        ''')
+            a = input("Press ENTER")
+        #----------------- summon dark wizard -------------------------
+        elif command=='4':
+            if hero.gold>200:
+                os.system('cls||clear')
+                print(f'''
+.▄▄ · ▄• ▄▌• ▌ ▄ ·. • ▌ ▄ ·.        ▐ ▄ ▪   ▐ ▄  ▄▄ •     ▄▄▌ ▐ ▄▌▪  ·▄▄▄▄• ▄▄▄· ▄▄▄  ·▄▄▄▄           
+▐█ ▀. █▪██▌·██ ▐███▪·██ ▐███▪▪     •█▌▐███ •█▌▐█▐█ ▀ ▪    ██· █▌▐███ ▪▀·.█▌▐█ ▀█ ▀▄ █·██▪ ██          
+▄▀▀▀█▄█▌▐█▌▐█ ▌▐▌▐█·▐█ ▌▐▌▐█· ▄█▀▄ ▐█▐▐▌▐█·▐█▐▐▌▄█ ▀█▄    ██▪▐█▐▐▌▐█·▄█▀▀▀•▄█▀▀█ ▐▀▀▄ ▐█· ▐█▌         
+▐█▄▪▐█▐█▄█▌██ ██▌▐█▌██ ██▌▐█▌▐█▌.▐▌██▐█▌▐█▌██▐█▌▐█▄▪▐█    ▐█▌██▐█▌▐█▌█▌▪▄█▀▐█ ▪▐▌▐█•█▌██. ██          
+▀▀▀▀  ▀▀▀ ▀▀  █▪▀▀▀▀▀  █▪▀▀▀ ▀█▄▀▪▀▀ █▪▀▀▀▀▀ █▪·▀▀▀▀      ▀▀▀▀ ▀▪▀▀▀·▀▀▀ • ▀  ▀ .▀  ▀▀▀▀▀▀•  ▀  ▀  ▀ 
+                            ''')
+                a = input("Press ENTER")
+                #----- attack loop
+                monster = Enemy('Viegar', 'Yordle', 'Wizard', 120,14,160,30)
+                monster.equip(items[random.randint(0,33)])
+                monster.equip(items[random.randint(0,33)])
+                monster.equip(items[random.randint(0,33)])
+                monster.equip(items[random.randint(0,33)])
+                monster.equip(items[random.randint(0,33)])
+                monster.equip(items[random.randint(0,33)])
+                
+
+                while(monster.health>0 and hero.health>0):
+                    print(f'''
+Choose :
+1) Attack
+2) Cast  Spell (current mana{hero.mana})
+3) View Stats
+                    ''')
+                    at=''
+                    while(at!='1' and at!='2'and at!='3'):
+                        at=input("(option 1,2,3): ")
+                    if at=='1':
+                        hero.attack(monster)
+                        hero.regenerate()
+                        if monster.health>0:
+                            if random.randint(0,1):
+                                monster.spell(hero)
+                                monster.regenerate()
+                            else:
+                                monster.attack(hero)
+                                monster.regenerate()
+                    elif at=='2':
+                        hero.spell(monster)
+                        hero.regenerate()
+                        if monster.health>0:
+                            if random.randint(0,1):
+                                monster.spell(hero)
+                                monster.regenerate()
+                            else:
+                                monster.attack(hero)
+                                monster.regenerate()
+                    elif at=='3':
+                        os.system('cls||clear')
+                        print(f'''
+.▄▄ · ▄▄▄▄▄ ▄▄▄· ▄▄▄▄▄.▄▄ · 
+▐█ ▀. •██  ▐█ ▀█ •██  ▐█ ▀. 
+▄▀▀▀█▄ ▐█.▪▄█▀▀█  ▐█.▪▄▀▀▀█▄
+▐█▄▪▐█ ▐█▌·▐█ ▪▐▌ ▐█▌·▐█▄▪▐█
+ ▀▀▀▀  ▀▀▀  ▀  ▀  ▀▀▀  ▀▀▀▀ 
+Monster health: {monster.health}/{monster.max_health} Strength:{monster.strength} Mana: {monster.mana} Dodge: {monster.dodge}
+Player health: {hero.health}/{hero.max_health} Strength: {hero.strength+hero.weapon.strength+hero.helmet.strength+hero.armor.strength+hero.shoes.strength} Mana: {hero.mana+hero.weapon.mana+hero.helmet.mana+hero.armor.mana+hero.shoes.mana} Dodge: {hero.dodge+hero.weapon.dodge+hero.helmet.dodge+hero.armor.dodge+hero.shoes.dodge}
+                        ''')
+                        a = input("Press ENTER")
+                    if hero.health<=0:
+                        print(f'''
+ ▄▄ •  ▄▄▄· • ▌ ▄ ·. ▄▄▄ .           ▌ ▐·▄▄▄ .▄▄▄  
+▐█ ▀ ▪▐█ ▀█ ·██ ▐███▪▀▄.▀·    ▪     ▪█·█▌▀▄.▀·▀▄ █·
+▄█ ▀█▄▄█▀▀█ ▐█ ▌▐▌▐█·▐▀▀▪▄     ▄█▀▄ ▐█▐█•▐▀▀▪▄▐▀▀▄ 
+▐█▄▪▐█▐█ ▪▐▌██ ██▌▐█▌▐█▄▄▌    ▐█▌.▐▌ ███ ▐█▄▄▌▐█•█▌
+·▀▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀      ▀█▄▀▪. ▀   ▀▀▀ .▀  ▀
+------------------ You have died -------------------
+                        ''')
+                        a = input("Press ENTER to exit")
+                        sys.exit()
+                    if monster.health<=0:
+                        print(f'''
+▄▄▌ ▐ ▄▌▪  ·▄▄▄▄• ▄▄▄· ▄▄▄  ·▄▄▄▄      ▪  .▄▄ ·     ·▄▄▄▄  ▄▄▄ .·▄▄▄▄▄▄ . ▄▄▄· ▄▄▄▄▄▄▄▄ .·▄▄▄▄  
+██· █▌▐███ ▪▀·.█▌▐█ ▀█ ▀▄ █·██▪ ██     ██ ▐█ ▀.     ██▪ ██ ▀▄.▀·▐▄▄·▀▄.▀·▐█ ▀█ •██  ▀▄.▀·██▪ ██ 
+██▪▐█▐▐▌▐█·▄█▀▀▀•▄█▀▀█ ▐▀▀▄ ▐█· ▐█▌    ▐█·▄▀▀▀█▄    ▐█· ▐█▌▐▀▀▪▄██▪ ▐▀▀▪▄▄█▀▀█  ▐█.▪▐▀▀▪▄▐█· ▐█▌
+▐█▌██▐█▌▐█▌█▌▪▄█▀▐█ ▪▐▌▐█•█▌██. ██     ▐█▌▐█▄▪▐█    ██. ██ ▐█▄▄▌██▌.▐█▄▄▌▐█ ▪▐▌ ▐█▌·▐█▄▄▌██. ██ 
+ ▀▀▀▀ ▀▪▀▀▀·▀▀▀ • ▀  ▀ .▀  ▀▀▀▀▀▀•     ▀▀▀ ▀▀▀▀     ▀▀▀▀▀•  ▀▀▀ ▀▀▀  ▀▀▀  ▀  ▀  ▀▀▀  ▀▀▀ ▀▀▀▀▀• 
+With a final, thunderous cry, your weapon strikes true. The evil wizard staggers, eyes wide with disbelief, before collapsing into a heap of tattered robes and smoke.
+
+The air grows still. The storm above dissipates. The dark sigils lining the walls flicker and fade.
+
+You did it. The realm is free.
+
+The darkness is gone. The legend… is yours.
+
+Congratulations, hero. You have completed your quest.
+                        ''')
+                        a = input("Press ENTER to exit")
+                        sys.exit()
+                
+                
+                # ---- attack loop
+            else:
+                a = input("Need 200 gold pay shopkeeper to summon wizard")
+                
+        
             
         
 main()

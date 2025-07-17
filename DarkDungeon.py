@@ -57,22 +57,22 @@ items = [
 # Test — print all items
 # for item in items:
 #     print(item)
-player = Fighter('joey','Human',120,12,120,18)
-goblin = Character('bingo', 'goblin','gooby', 150,10,30,10)
-player.equip(Item("Iron Longsword", "Weapon", strength=10))
-player.equip(Item("Boots of Speed", "Shoes", dodge=20))
-goblin.equip(Item("Chainmail Vest", "Armor", health=25))
-print(player.return_stats())
-print(goblin.return_stats())
-print()
-while(player.health>0 and goblin.health>0):
-    player.spell(goblin)
-    goblin.attack(player)
+# player = Fighter('joey','Human',120,12,120,18)
+# goblin = Character('bingo', 'goblin','gooby', 150,10,30,10)
+# player.equip(Item("Iron Longsword", "Weapon", strength=10))
+# player.equip(Item("Boots of Speed", "Shoes", dodge=20))
+# goblin.equip(Item("Chainmail Vest", "Armor", health=25))
+# print(player.return_stats())
+# print(goblin.return_stats())
+# print()
+# while(player.health>0 and goblin.health>0):
+#     player.spell(goblin)
+#     goblin.attack(player)
 
 
 shop_items=[]
 for i in range(5):
-    shop_items.append(random.randint(1,32))
+    shop_items.append(random.randint(4,31))
 
 
 
@@ -194,8 +194,19 @@ Choose a class:
 ▐█▌·▐█•█▌▐█▄▄▌▐█ ▪▐▌▐█▄▪▐█▐█▄█▌▐█•█▌▐█▄▄▌
 ▀▀▀ .▀  ▀ ▀▀▀  ▀  ▀  ▀▀▀▀  ▀▀▀ .▀  ▀ ▀▀▀ 
                 ''')
-                a = input("Press ENTER to continue")
-                
+                found_item = items[random.randint(0,33)]
+                print(f"current Weapon: {hero.weapon}")
+                print(f"current Helmet: {hero.helmet}")
+                print(f"current Armor: {hero.armor}")
+                print(f"current Shoes: {hero.shoes}")
+                print(f"you found item {found_item}, do you want to equip? y/n")
+                equip=''
+                while(equip!='y' and equip!='n'):
+                    equip=input("(option y/n): ")
+                if equip=='y':
+                    hero.equip(found_item)
+                    print(f"you equipped {found_item.name}")
+                    a = input(f"you equipped {found_item.name}")
             else:
                 print('''
 ▄▄▄ . ▐ ▄ ▄▄▄ .• ▌ ▄ ·.  ▄· ▄▌
@@ -205,11 +216,30 @@ Choose a class:
 ▀▀▀ ▀▀ █▪ ▀▀▀ ▀▀  █▪▀▀▀  ▀ • 
                 ''')
                 a = input("Press ENTER to continue")
+                monster = Character('Monster', 'ghost', 'ghoul', random.randint(80,120),random.randint(6,14),random.randint(80,160),random.randint(0,30),)
+                
+                #------------- attack loop -------------------
+                while(monster.health>0 and hero.health>0):
+                    print(f'''
+Choose :
+1) Attack
+2) Cast  Spell (current mana{hero.mana})
+3) View Stats
+                    ''')
+                    at=''
+                    while(at!='1' and at!='2'and at!='3'):
+                        at=input("(option 1,2,3): ")
+                    if at=='1':
+                        pass
+                    elif at=='2':
+                        pass
+                    elif at=='3':
+                        pass
         #----------------- Shop -------------------------
-        if command=='2':
+        elif command=='2':
             pass
         #----------------- fight dark wizard -------------------------
-        if command=='3':
+        elif command=='3':
             pass
             
             

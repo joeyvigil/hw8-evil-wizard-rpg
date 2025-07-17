@@ -40,7 +40,7 @@ class Character:
             self.armor=item
         if item.type=='Shoes':
             self.shoes=item
-        print(f"{self.name} has equipped {item}")
+        # print(f"{self.name} has equipped {item}")
             
     def spell(self, opponent):
         #similar to attacking but cant dodge and cost mana

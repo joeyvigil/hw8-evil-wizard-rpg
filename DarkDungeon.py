@@ -57,7 +57,7 @@ items = [
 # Test — print all items
 # for item in items:
 #     print(item)
-player = Fighter('joey','human', 150,10,30,10)
+player = Fighter('joey','Human',120,12,120,18)
 goblin = Character('bingo', 'goblin','gooby', 150,10,30,10)
 player.equip(Item("Iron Longsword", "Weapon", strength=10))
 player.equip(Item("Boots of Speed", "Shoes", dodge=20))
@@ -66,28 +66,28 @@ print(player.return_stats())
 print(goblin.return_stats())
 print()
 while(player.health>0 and goblin.health>0):
-    player.attack(goblin)
+    player.spell(goblin)
     goblin.attack(player)
 
-  
-    
 
-    
+shop_items=[]
+for i in range(5):
+    shop_items.append(random.randint(1,32))
 
-    
 
 
 def main():
     os.system('cls||clear')
+    print(f"num of items: {len(items)}")
+    print(f"shop items: {shop_items}")
     print('''
-
 ·▄▄▄▄   ▄▄▄· ▄▄▄  ▄ •▄     ·▄▄▄▄  ▄• ▄▌ ▐ ▄  ▄▄ • ▄▄▄ .       ▐ ▄ 
 ██▪ ██ ▐█ ▀█ ▀▄ █·█▌▄▌▪    ██▪ ██ █▪██▌•█▌▐█▐█ ▀ ▪▀▄.▀·▪     •█▌▐█
 ▐█· ▐█▌▄█▀▀█ ▐▀▀▄ ▐▀▀▄·    ▐█· ▐█▌█▌▐█▌▐█▐▐▌▄█ ▀█▄▐▀▀▪▄ ▄█▀▄ ▐█▐▐▌
 ██. ██ ▐█ ▪▐▌▐█•█▌▐█.█▌    ██. ██ ▐█▄█▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌.▐▌██▐█▌
 ▀▀▀▀▀•  ▀  ▀ .▀  ▀·▀  ▀    ▀▀▀▀▀•  ▀▀▀ ▀▀ █▪·▀▀▀▀  ▀▀▀  ▀█▄▀▪▀▀ █▪
 
-          ''')
+    ''')
     name=input("What is your character's name? ")
     
     print('''
@@ -141,9 +141,77 @@ Choose a class:
             hero=Barbarian(name,'Dwarf',160,14,80,12)
         if race=='4':
             hero=Barbarian(name,'Gnome',80,6,140,30)
-            
-    print(hero.return_stats()['name'])
-    print(hero.name)
-
+    os.system('cls||clear')      
+    print(hero.return_stats())
+    print('''
+▄▄▄ . ▐ ▄ ▄▄▄▄▄▄▄▄ .▄▄▄  ▪   ▐ ▄  ▄▄ •     ·▄▄▄▄  ▄• ▄▌ ▐ ▄  ▄▄ • ▄▄▄ .       ▐ ▄ 
+▀▄.▀·•█▌▐█•██  ▀▄.▀·▀▄ █·██ •█▌▐█▐█ ▀ ▪    ██▪ ██ █▪██▌•█▌▐█▐█ ▀ ▪▀▄.▀·▪     •█▌▐█
+▐▀▀▪▄▐█▐▐▌ ▐█.▪▐▀▀▪▄▐▀▀▄ ▐█·▐█▐▐▌▄█ ▀█▄    ▐█· ▐█▌█▌▐█▌▐█▐▐▌▄█ ▀█▄▐▀▀▪▄ ▄█▀▄ ▐█▐▐▌
+▐█▄▄▌██▐█▌ ▐█▌·▐█▄▄▌▐█•█▌▐█▌██▐█▌▐█▄▪▐█    ██. ██ ▐█▄█▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌.▐▌██▐█▌
+ ▀▀▀ ▀▀ █▪ ▀▀▀  ▀▀▀ .▀  ▀▀▀▀▀▀ █▪·▀▀▀▀     ▀▀▀▀▀•  ▀▀▀ ▀▀ █▪·▀▀▀▀  ▀▀▀  ▀█▄▀▪▀▀ █▪
+    ''')
+    a = input("Press ENTER to start")
     
-# main()
+    #--------------- MAIN GAME LOOP --------------------------
+    game_loop=True
+    while(game_loop):
+        os.system('cls||clear')
+        print('''
+ ▄▄·       • ▌ ▄ ·. • ▌ ▄ ·.  ▄▄▄·  ▐ ▄ ·▄▄▄▄  
+▐█ ▌▪▪     ·██ ▐███▪·██ ▐███▪▐█ ▀█ •█▌▐███▪ ██ 
+██ ▄▄ ▄█▀▄ ▐█ ▌▐▌▐█·▐█ ▌▐▌▐█·▄█▀▀█ ▐█▐▐▌▐█· ▐█▌
+▐███▌▐█▌.▐▌██ ██▌▐█▌██ ██▌▐█▌▐█ ▪▐▌██▐█▌██. ██ 
+·▀▀▀  ▀█▄▀▪▀▀  █▪▀▀▀▀▀  █▪▀▀▀ ▀  ▀ ▀▀ █▪▀▀▀▀▀• 
+
+1) Enter New Room (d10) (10% empty room, 20% treasure room, 70% monster room)
+2) Enter Shop
+3) Summon Dark Wizard!
+        ''')
+        command=''
+        while(command!='1' and command!='2' and command!='3'):
+            command=input("(option 1,2,3): ")
+        
+        #----------------- enter new room-------------------------
+        if command=='1':
+            os.system('cls||clear')
+            die=random.randint(1,10)
+            print(f"die roll = {die}")
+            if die==1:
+                print('''
+▄▄▄ .• ▌ ▄ ·.  ▄▄▄·▄▄▄▄▄ ▄· ▄▌    ▄▄▄              • ▌ ▄ ·. 
+▀▄.▀··██ ▐███▪▐█ ▄█•██  ▐█▪██▌    ▀▄ █·▪     ▪     ·██ ▐███▪
+▐▀▀▪▄▐█ ▌▐▌▐█· ██▀· ▐█.▪▐█▌▐█▪    ▐▀▀▄  ▄█▀▄  ▄█▀▄ ▐█ ▌▐▌▐█·
+▐█▄▄▌██ ██▌▐█▌▐█▪·• ▐█▌· ▐█▀·.    ▐█•█▌▐█▌.▐▌▐█▌.▐▌██ ██▌▐█▌
+▀▀▀ ▀▀  █▪▀▀▀.▀    ▀▀▀   ▀ •     .▀  ▀ ▀█▄▀▪ ▀█▄▀▪▀▀  █▪▀▀▀
+                ''')
+                a = input("Press ENTER to continue")
+            
+            elif die<=3:
+                print('''
+▄▄▄▄▄▄▄▄  ▄▄▄ . ▄▄▄· .▄▄ · ▄• ▄▌▄▄▄  ▄▄▄ .
+•██  ▀▄ █·▀▄.▀·▐█ ▀█ ▐█ ▀. █▪██▌▀▄ █·▀▄.▀·
+▐█.▪▐▀▀▄ ▐▀▀▪▄▄█▀▀█ ▄▀▀▀█▄█▌▐█▌▐▀▀▄ ▐▀▀▪▄
+▐█▌·▐█•█▌▐█▄▄▌▐█ ▪▐▌▐█▄▪▐█▐█▄█▌▐█•█▌▐█▄▄▌
+▀▀▀ .▀  ▀ ▀▀▀  ▀  ▀  ▀▀▀▀  ▀▀▀ .▀  ▀ ▀▀▀ 
+                ''')
+                a = input("Press ENTER to continue")
+                
+            else:
+                print('''
+▄▄▄ . ▐ ▄ ▄▄▄ .• ▌ ▄ ·.  ▄· ▄▌
+▀▄.▀·•█▌▐█▀▄.▀··██ ▐███▪▐█▪██▌
+▐▀▀▪▄▐█▐▐▌▐▀▀▪▄▐█ ▌▐▌▐█·▐█▌▐█▪
+▐█▄▄▌██▐█▌▐█▄▄▌██ ██▌▐█▌ ▐█▀·.
+▀▀▀ ▀▀ █▪ ▀▀▀ ▀▀  █▪▀▀▀  ▀ • 
+                ''')
+                a = input("Press ENTER to continue")
+        #----------------- Shop -------------------------
+        if command=='2':
+            pass
+        #----------------- fight dark wizard -------------------------
+        if command=='3':
+            pass
+            
+            
+        
+main()

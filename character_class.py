@@ -21,7 +21,6 @@ class Character:
         self.armor = Item("No Armor", "Armor")
         self.shoes=Item("No Shoes", "Shoes")
     
-    
     def attack(self,opponent):
         die=random.randint(1,100)
         print(f"dodge roll = {die}, required roll <= {opponent.dodge}")
@@ -32,7 +31,6 @@ class Character:
         else:
             print(f"{opponent.name} has dodged")
 
-    
     def equip(self,item):
         if item.type=='Weapon':
             self.weapon=item
@@ -126,7 +124,7 @@ class Mage(Character):
         super().__init__(name, race,'Mage', health, strength, mana+60, dodge+3)
         
     def spell(self, opponent):
-        #similar to attacking but cant dodge and cost mana
+        #similar to attacking but cant dodge and cost mana mage does more magic damage
         mana_cost=30
         if(self.mana-mana_cost>=0):
             opponent.health -=int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.45)
@@ -155,15 +153,27 @@ class Barbarian(Character):
         else:
             print("you dont have enough mana")
             
-    def regenerate(self):
-        self.health+= int((self.max_health)*.01)
-        print(f"{self.name} regenerates {int((self.max_health)*.01)} current health: {self.health}")
+    def regenerate(self): #barbarian regenerate health
+        self.health+= int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.02)
+        print(f"{self.name} regenerates {int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.01)} current health: {self.health}")
 
 class Enemy(Character):
     '''Enemy class'''
     def __init__(self, name, race, health, strength, mana, dodge):
-        super().__init__(name, race, health, strength, mana, dodge+3)
+        super().__init__(name, race, health, strength, mana, dodge)
         
-    def regenerate(self):
-        self.health+= int((self.max_health)*.01)
-        print(f"{self.name} regenerates {int((self.max_health)*.01)} current health: {self.health}")
+    def regenerate(self): #barbarian regenerate health
+        self.health+= int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.01)
+        print(f"{self.name} regenerates {int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.01)} current health: {self.health}")
+        
+    def spell(self, opponent):
+        #similar to attacking but cant dodge and cost mana mage does more magic damage
+        mana_cost=30
+        if(self.mana-mana_cost>=0):
+            opponent.health -=int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.45)
+            self.mana-=mana_cost
+            print(f"{self.name} has attacked {opponent.name} with 'spell: Eldritch Nova' for {int((self.max_mana+self.weapon.mana+self.helmet.mana+self.armor.mana+self.shoes.mana)*.45)} points of damage")
+            print(f"{opponent.name} health = {opponent.health}")
+            print(f"mana cost: {mana_cost}, current mana {self.mana}")
+        else:
+            print("you dont have enough mana")

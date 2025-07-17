@@ -155,7 +155,6 @@ class Barbarian(Character):
             
     def regenerate(self): #barbarian regenerate health
         self.health+= int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.03)
-        print(f"regen {int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.03)}")
         print(f"{self.name} regenerates {int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.03)} current health: {self.health}")
 
 class Enemy(Character):
@@ -164,8 +163,8 @@ class Enemy(Character):
         super().__init__(name, race, health, strength, mana, dodge)
         
     def regenerate(self): 
-        self.health+= int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.06)
-        print(f"{self.name} regenerates {int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.06)} current health: {self.health}")
+        self.health+= int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.03)
+        print(f"{self.name} regenerates {int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.03)} current health: {self.health}")
         
     def spell(self, opponent):
         #similar to attacking but cant dodge and cost mana mage does more magic damage

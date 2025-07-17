@@ -178,11 +178,11 @@ Choose a class:
 ▐█▌·▐█•█▌▐█▄▄▌▐█ ▪▐▌▐█▄▪▐█▐█▄█▌▐█•█▌▐█▄▄▌
 ▀▀▀ .▀  ▀ ▀▀▀  ▀  ▀  ▀▀▀▀  ▀▀▀ .▀  ▀ ▀▀▀ 
                 ''')
-                found_item = items[random.randint(0,33)]
+                found_item = items[random.randint(4,33)]
                 print(f"current Weapon: {hero.weapon}")
                 print(f"current Helmet: {hero.helmet}")
                 print(f"current Armor: {hero.armor}")
-                print(f"current Shoes: {hero.shoes}")
+                print(f"current Shoes: {hero.shoes}\n")
                 print(f"you found item {found_item}, do you want to equip? y/n")
                 equip=''
                 while(equip!='y' and equip!='n'):
@@ -291,30 +291,30 @@ Current Gold: {hero.gold}
             while(shop!='1' and shop!='2' and shop!='3' and shop!='4' and shop!='5' and shop!='6' and shop!='7'and shop!='8'):
                 shop=input("(option 1-8): ")
             if shop=='1' and hero.gold>=10:
-                hero.full_health
+                hero.full_health()
                 hero.gold-=10
             elif shop=='2' and hero.gold>=10:
-                hero.full_mana
+                hero.full_mana()
                 hero.gold-=10
             elif shop=='3' and hero.gold>=50:
                 hero.equip(items[shop_items[0]])
-                a = input(f"You equiped {items[shop_items[0]].name}")
+                a = input(f"You equipped {items[shop_items[0]].name}")
                 hero.gold-=50
             elif shop=='4' and hero.gold>=50:
                 hero.equip(items[shop_items[1]])
-                a = input(f"You equiped {items[shop_items[1]].name}")
+                a = input(f"You equipped {items[shop_items[1]].name}")
                 hero.gold-=50
             elif shop=='5' and hero.gold>=50:
                 hero.equip(items[shop_items[2]])
-                a = input(f"You equiped {items[shop_items[2]].name}")
+                a = input(f"You equipped {items[shop_items[2]].name}")
                 hero.gold-=50
             elif shop=='6' and hero.gold>=50:
                 hero.equip(items[shop_items[3]])
-                a = input(f"You equiped {items[shop_items[3]].name}")
+                a = input(f"You equipped {items[shop_items[3]].name}")
                 hero.gold-=50
             elif shop=='7' and hero.gold>=50:
                 hero.equip(items[shop_items[4]])
-                a = input(f"You equiped {items[shop_items[4]].name}")
+                a = input(f"You equipped {items[shop_items[4]].name}")
                 hero.gold-=50
                 
                 

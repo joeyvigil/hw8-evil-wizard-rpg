@@ -63,6 +63,7 @@ class Character:
             'mana': self.mana,
             'dodge':self.dodge,
             'gold':self.gold,
+            'max_mana': self.max_mana,
             'max_health': self.max_health,
             'weapon': self.weapon,
             'helmet': self.helmet,

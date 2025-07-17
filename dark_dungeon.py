@@ -242,7 +242,7 @@ Choose :
 ▐█▄▪▐█ ▐█▌·▐█ ▪▐▌ ▐█▌·▐█▄▪▐█
  ▀▀▀▀  ▀▀▀  ▀  ▀  ▀▀▀  ▀▀▀▀ 
 Monster health: {monster.health}/{monster.max_health} Strength:{monster.strength} Mana: {monster.mana} Dodge: {monster.dodge}
-Player health: {hero.health}/{hero.max_health} Strength: {hero.strength+hero.weapon.strength+hero.helmet.strength+hero.armor.strength+hero.shoes.strength} Mana: {hero.mana+hero.weapon.mana+hero.helmet.mana+hero.armor.mana+hero.shoes.mana} Dodge: {hero.dodge+hero.weapon.dodge+hero.helmet.dodge+hero.armor.dodge+hero.shoes.dodge}
+Player health: {hero.health}/{hero.max_health+hero.weapon.health+hero.helmet.health+hero.armor.health+hero.shoes.health}\nMana: {hero.mana} \nStrength: {hero.strength+hero.weapon.strength+hero.helmet.strength+hero.armor.strength+hero.shoes.strength} \nMagic Power (max_mana): {hero.max_mana+hero.weapon.mana+hero.helmet.mana+hero.armor.mana+hero.shoes.mana} \nDodge: {hero.dodge+hero.weapon.dodge+hero.helmet.dodge+hero.armor.dodge+hero.shoes.dodge}
                         ''')
                         a = input("Press ENTER")
                     if hero.health<=0:
@@ -327,7 +327,7 @@ Current Gold: {hero.gold}
 ▄▀▀▀█▄ ▐█.▪▄█▀▀█  ▐█.▪▄▀▀▀█▄
 ▐█▄▪▐█ ▐█▌·▐█ ▪▐▌ ▐█▌·▐█▄▪▐█
  ▀▀▀▀  ▀▀▀  ▀  ▀  ▀▀▀  ▀▀▀▀ 
-Player health: {hero.health}/{hero.max_health+hero.weapon.health+hero.helmet.health+hero.armor.health+hero.shoes.health}\nStrength: {hero.strength+hero.weapon.strength+hero.helmet.strength+hero.armor.strength+hero.shoes.strength} \nMagic Power (sum of mana stats): {hero.mana+hero.weapon.mana+hero.helmet.mana+hero.armor.mana+hero.shoes.mana} \nDodge: {hero.dodge+hero.weapon.dodge+hero.helmet.dodge+hero.armor.dodge+hero.shoes.dodge}% \n\n{hero.return_stats()}
+Player health: {hero.health}/{hero.max_health+hero.weapon.health+hero.helmet.health+hero.armor.health+hero.shoes.health}\nStrength: {hero.strength+hero.weapon.strength+hero.helmet.strength+hero.armor.strength+hero.shoes.strength} \nMagic Power (sum of mana stats): {hero.max_mana+hero.weapon.mana+hero.helmet.mana+hero.armor.mana+hero.shoes.mana} \nDodge: {hero.dodge+hero.weapon.dodge+hero.helmet.dodge+hero.armor.dodge+hero.shoes.dodge}% \n\n{hero.return_stats()}
                         ''')
             a = input("Press ENTER")
         #----------------- summon dark wizard -------------------------

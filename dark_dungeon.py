@@ -265,7 +265,7 @@ Player health: {hero.health}/{hero.max_health+hero.weapon.health+hero.helmet.hea
 ▀▀  █▪▀▀▀ ▀█▄▀▪▀▀ █▪ ▀▀▀▀  ▀▀▀  ▀▀▀ .▀  ▀     ▀▀▀▀ .▀▀▀  ▀  ▀ ▀▀▀▀▀ █▪
 
                         ''')
-                        money = random.randint(10,20)
+                        money = random.randint(20,40)
                         hero.gold += money
                         a = input(f"You have received {money} gold")
         #----------------- Shop -------------------------

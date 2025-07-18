@@ -13,7 +13,7 @@ class Character:
         self.mana= mana
         self.dodge=dodge
         
-        self.gold=500
+        self.gold=50
         self.max_health = health
         self.max_mana=mana
         self.weapon =Item("No Weapon", "Weapon")

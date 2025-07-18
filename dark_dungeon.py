@@ -343,7 +343,7 @@ Player health: {hero.health}/{hero.max_health+hero.weapon.health+hero.helmet.hea
                             ''')
                 a = input("Press ENTER")
                 #----- attack loop
-                monster = Enemy('Viegar', 'Yordle', 'Wizard', 120,14,160,30)
+                monster = Enemy('Viegar', 'Yordle', 120,14,160,30)
                 monster.equip(items[random.randint(0,33)])
                 monster.equip(items[random.randint(0,33)])
                 monster.equip(items[random.randint(0,33)])

@@ -13,7 +13,7 @@ class Character:
         self.mana= mana
         self.dodge=dodge
         
-        self.gold=50
+        self.gold=500
         self.max_health = health
         self.max_mana=mana
         self.weapon =Item("No Weapon", "Weapon")
@@ -161,7 +161,7 @@ class Barbarian(Character):
 class Enemy(Character):
     '''Enemy class'''
     def __init__(self, name, race, health, strength, mana, dodge):
-        super().__init__(name, race, health, strength, mana, dodge)
+        super().__init__(name, race,'Boss Monster', health, strength, mana, dodge)
         
     def regenerate(self): 
         self.health+= int((self.max_health+self.weapon.health+self.helmet.health+self.armor.health+self.shoes.health)*.03)
